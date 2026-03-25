@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Charan Logistics  – Reliable Transport in Singapore</title>
+<title>Charan Logistics – Reliable Transport in Singapore</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <style>
@@ -24,17 +24,34 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
 
-/* TOP BAR */
+/* ── TOP BAR ── */
 .top-bar {
-  background: var(--blue); color: rgba(255,255,255,0.88);
-  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.03em;
+  background: var(--blue);
+  color: rgba(255,255,255,0.88);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
   padding: 0.45rem 5vw;
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3rem;
 }
 .top-bar a { color: rgba(255,255,255,0.88); text-decoration: none; transition: color 0.15s; }
 .top-bar a:hover { color: #fff; }
+.top-bar .slogan {
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ffe066 25%, #42A5F5 50%, #ffe066 75%);
+  background-size: 400% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+}
+@keyframes shine { to { background-position: 200% center; } }
 
-/* NAV */
+/* ── NAV ── */
 nav {
   position: sticky; top: 0; z-index: 200;
   background: #fff; border-bottom: 1px solid var(--border);
@@ -42,41 +59,84 @@ nav {
   padding: 0 5vw; height: 70px;
   box-shadow: 0 2px 16px rgba(21,101,192,0.07);
 }
-.nav-logo { display: flex; align-items: center; gap: 0.85rem; text-decoration: none; }
-.nav-logo img { height: 65px; width: auto; object-fit: contain; }
-.nav-logo-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
+.nav-logo {
+  display: flex; align-items: center; gap: 0.85rem;
+  text-decoration: none; flex-shrink: 0;
 }
-
-
-
+.nav-logo img { height: 55px; width: auto; object-fit: contain; }
+.nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
 .nav-logo-text .brand {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.35rem;
+  font-size: clamp(0.72rem, 2vw, 1.3rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-
+  white-space: nowrap;
   background: linear-gradient(90deg, #cfc839, #42A5F5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .nav-logo-text .sub {
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.7rem; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.08em; text-transform: uppercase;
 }
+
+/* Desktop nav links */
 .nav-links { display: flex; align-items: center; gap: 0.2rem; list-style: none; }
 .nav-links a { font-size: 0.87rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.5rem 0.95rem; border-radius: 5px; transition: color 0.2s, background 0.2s; white-space: nowrap; }
 .nav-links a:hover { color: var(--blue); background: var(--blue-pale); }
 .nav-cta { background: var(--blue) !important; color: #fff !important; box-shadow: 0 2px 10px rgba(21,101,192,0.28); }
 .nav-cta:hover { background: var(--accent) !important; }
 
-/* HERO */
+/* Hamburger button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px; height: 40px;
+  background: var(--blue-pale);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.hamburger span {
+  display: block; width: 20px; height: 2px;
+  background: var(--blue); border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile drawer */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: #fff;
+  border-bottom: 2px solid var(--border);
+  padding: 1rem 5vw 1.5rem;
+  box-shadow: 0 8px 24px rgba(21,101,192,0.1);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 1rem; font-weight: 600; color: var(--text);
+  text-decoration: none; padding: 0.85rem 1rem;
+  border-radius: 8px; transition: background 0.2s, color 0.2s;
+  border-bottom: 1px solid var(--border);
+}
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { background: var(--blue-pale); color: var(--blue); }
+.mobile-menu .mob-cta {
+  margin-top: 0.5rem;
+  background: var(--blue) !important; color: #fff !important;
+  text-align: center; border-radius: 8px; border: none !important;
+  box-shadow: 0 4px 14px rgba(21,101,192,0.3);
+}
+
+/* ── HERO ── */
 .hero { background: var(--blue-bg); padding: 5rem 5vw 4rem; position: relative; overflow: hidden; }
 .hero::before { content:''; position:absolute; top:-80px; right:-100px; width:550px; height:550px; border-radius:50%; background:radial-gradient(circle, rgba(33,150,243,0.11) 0%, transparent 70%); pointer-events:none; }
 .hero-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
@@ -89,7 +149,7 @@ nav {
 .btn-blue:hover { background:var(--accent); transform:translateY(-2px); box-shadow:0 8px 24px rgba(21,101,192,0.4); }
 .btn-outline { background:transparent; color:var(--blue); padding:0.85rem 2rem; border-radius:6px; font-weight:700; font-size:0.92rem; text-decoration:none; border:2px solid var(--blue); transition:background 0.2s,color 0.2s; }
 .btn-outline:hover { background:var(--blue); color:#fff; }
-.hero-stats { display:flex; gap:2.5rem; margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border); animation:fadeUp 0.6s 0.4s ease both; }
+.hero-stats { display:flex; gap:2.5rem; margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border); animation:fadeUp 0.6s 0.4s ease both; flex-wrap: wrap; }
 .stat-num { font-size:2rem; font-weight:800; color:var(--blue); line-height:1; }
 .stat-label { font-size:0.7rem; color:var(--muted); font-weight:500; letter-spacing:0.07em; text-transform:uppercase; margin-top:0.2rem; }
 
@@ -104,7 +164,7 @@ nav {
 .hcard-2 { top:110px; left:40px; right:0; animation:slideUp 0.7s 0.5s ease both; }
 .hcard-3 { top:220px; left:0; right:80px; animation:slideUp 0.7s 0.7s ease both; }
 
-/* SECTIONS */
+/* ── SECTIONS ── */
 section { padding:5rem 5vw; }
 .section-inner { max-width:1100px; margin:0 auto; }
 .section-tag { font-size:0.7rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--blue); margin-bottom:0.5rem; display:flex; align-items:center; gap:0.5rem; }
@@ -113,7 +173,7 @@ section { padding:5rem 5vw; }
 .section-title em { font-style:normal; color:var(--blue); }
 .section-sub { font-size:0.98rem; color:var(--muted); font-weight:400; line-height:1.72; max-width:540px; margin-top:0.6rem; }
 
-/* SLIDESHOW */
+/* ── SLIDESHOW ── */
 .fleet-slideshow-section { background:var(--blue-bg); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
 .fleet-slideshow { margin-top:2rem; border-radius:16px; overflow:hidden; border:1px solid var(--border); position:relative; background:#f5f9ff; height:380px; box-shadow:0 8px 40px rgba(21,101,192,0.1); }
 .slide-placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.2rem; background:linear-gradient(135deg,#EBF5FF 0%,#F0F7FF 100%); }
@@ -125,7 +185,7 @@ section { padding:5rem 5vw; }
 .dot.active { background:var(--blue); width:24px; border-radius:4px; }
 .slide-counter { position:absolute; top:1rem; right:1.2rem; font-size:0.76rem; font-weight:700; color:var(--blue); background:rgba(255,255,255,0.92); padding:0.25rem 0.7rem; border-radius:20px; display:none; box-shadow:0 2px 8px rgba(21,101,192,0.12); }
 
-/* FLEET CARDS */
+/* ── FLEET CARDS ── */
 .fleet-section { background:#fff; }
 .fleet-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:2.5rem; }
 .fleet-card { border:1px solid var(--border); border-radius:12px; overflow:hidden; transition:transform 0.3s,box-shadow 0.3s; position:relative; background:#fff; }
@@ -136,7 +196,7 @@ section { padding:5rem 5vw; }
 .fleet-card-body p { font-size:0.87rem; color:var(--muted); line-height:1.65; }
 .fleet-badge { position:absolute; top:1rem; right:1rem; background:var(--blue); color:#fff; font-size:0.64rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.25rem 0.65rem; border-radius:20px; }
 
-/* SERVICES */
+/* ── SERVICES ── */
 .services-section { background:var(--blue-bg); }
 .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-top:2.5rem; }
 .service-card { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.8rem 1.5rem; transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s; }
@@ -145,7 +205,7 @@ section { padding:5rem 5vw; }
 .service-card h4 { font-size:0.97rem; font-weight:700; color:var(--text); margin-bottom:0.4rem; }
 .service-card p { font-size:0.83rem; color:var(--muted); line-height:1.65; }
 
-/* WHY */
+/* ── WHY ── */
 .why-section { background:#fff; }
 .why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:2.5rem; }
 .why-card { padding:2rem 1.5rem; border-radius:12px; border:1px solid var(--border); background:var(--blue-bg); transition:border-color 0.25s,transform 0.25s; }
@@ -155,7 +215,7 @@ section { padding:5rem 5vw; }
 .why-card h4 { font-size:0.98rem; font-weight:700; color:var(--text); margin-bottom:0.35rem; }
 .why-card p { font-size:0.82rem; color:var(--muted); line-height:1.65; }
 
-/* CTA BANNER */
+/* ── CTA BANNER ── */
 .cta-section { background:var(--blue); padding:5rem 5vw; text-align:center; position:relative; overflow:hidden; }
 .cta-section::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-45deg,transparent,transparent 40px,rgba(255,255,255,0.03) 40px,rgba(255,255,255,0.03) 41px); }
 .cta-section::after { content:''; position:absolute; bottom:-100px; right:-100px; width:400px; height:400px; border-radius:50%; background:rgba(255,255,255,0.05); pointer-events:none; }
@@ -164,7 +224,7 @@ section { padding:5rem 5vw; }
 .btn-white { background:#fff; color:var(--blue); padding:1rem 2.5rem; border-radius:6px; font-weight:800; font-size:0.95rem; text-decoration:none; position:relative; display:inline-block; transition:transform 0.2s,box-shadow 0.2s; box-shadow:0 4px 20px rgba(0,0,0,0.2); }
 .btn-white:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,0.25); }
 
-/* CONTACT */
+/* ── CONTACT ── */
 .contact-section { background:var(--blue-bg); }
 .contact-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin:2rem 0 2.5rem; }
 .contact-chip { background:#fff; border:1px solid var(--border); border-radius:10px; padding:1.2rem; display:flex; gap:0.9rem; align-items:flex-start; transition:box-shadow 0.2s; }
@@ -197,57 +257,89 @@ section { padding:5rem 5vw; }
 #map-steps { display:none; background:#fff; border:1px solid var(--border); border-radius:10px; padding:1.2rem; max-height:180px; overflow-y:auto; margin-top:1rem; }
 #steps-list { padding-left:1.2rem; font-size:0.82rem; color:var(--muted); line-height:1.9; }
 
-/* FOOTER */
+/* ── FOOTER ── */
 footer { background:var(--text); padding:2.5rem 5vw; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
 .footer-logo { font-size:1.1rem; font-weight:800; color:#fff; }
 .footer-logo span { color:#64B5F6; }
 footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
 
-/* WHATSAPP */
+/* ── WHATSAPP FLOAT ── */
 .wa-float { position:fixed; bottom:2rem; right:2rem; z-index:300; background:#25d366; color:#fff; width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none; box-shadow:0 4px 20px rgba(37,211,102,0.5); transition:transform 0.2s; animation:pulse 2.5s infinite; }
 .wa-float:hover { transform:scale(1.1); }
 
+/* ── ANIMATIONS ── */
 @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 @keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
 @keyframes pulse { 0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.5)} 50%{box-shadow:0 4px 32px rgba(37,211,102,0.8)} }
 .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.55s ease,transform 0.55s ease; }
 .reveal.visible { opacity:1; transform:translateY(0); }
 
+/* ══════════════════════════════
+   RESPONSIVE BREAKPOINTS
+══════════════════════════════ */
+
+/* Tablet */
 @media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr;}
-  .hero-visual{display:none;}
-  .services-grid,.why-grid{grid-template-columns:1fr 1fr;}
-  .contact-strip{grid-template-columns:1fr 1fr;}
-}
-@media(max-width:640px){
-  .nav-links{display:none;}
-  .fleet-grid,.contact-grid,.form-row,.services-grid,.why-grid,.contact-strip{grid-template-columns:1fr;}
-}
-.top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-}
-.slogan {
-  font-size: 16px;
-  font-weight: 700;
-  background: linear-gradient(
-    90deg,
-    #1565C0 25%,
-    #42A5F5 50%,
-    #1565C0 75%
-  );
-  background-size: 400% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shine 3s linear infinite;
+  .hero-inner { grid-template-columns:1fr; }
+  .hero-visual { display:none; }
+  .services-grid, .why-grid { grid-template-columns:1fr 1fr; }
+  .contact-strip { grid-template-columns:1fr 1fr; }
 }
 
-@keyframes shine {
-  to {
-    background-position: 200% center;
+/* Mobile */
+@media(max-width:640px){
+
+  /* Top bar — stack vertically */
+  .top-bar {
+    flex-direction: column;
+    text-align: center;
+    font-size: 0.74rem;
+    padding: 0.5rem 4vw;
+    gap: 0.25rem;
   }
+
+  /* Nav */
+  nav { padding: 0 4vw; height: 62px; }
+  .nav-logo img { height: 44px; }
+  .nav-links { display: none; } /* hide desktop links */
+  .hamburger { display: flex; } /* show burger */
+
+  /* Grids → single column */
+  .fleet-grid,
+  .contact-grid,
+  .form-row,
+  .services-grid,
+  .why-grid,
+  .contact-strip { grid-template-columns: 1fr; }
+
+  /* Hero adjustments */
+  .hero { padding: 3rem 5vw 2.5rem; }
+  .hero h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
+  .hero-btns { flex-direction: column; }
+  .btn-blue, .btn-outline { text-align: center; }
+  .hero-stats { gap: 1.5rem; }
+
+  /* Section padding */
+  section { padding: 3.5rem 5vw; }
+
+  /* Slideshow height */
+  .fleet-slideshow { height: 260px; }
+
+  /* Contact map */
+  #map { min-height: 300px; }
+
+  /* Footer */
+  footer { flex-direction: column; text-align: center; }
+
+  /* CTA */
+  .cta-section h2 { font-size: clamp(1.6rem, 7vw, 2.4rem); }
+  .btn-white { display: block; padding: 1rem; }
+}
+
+/* Very small phones */
+@media(max-width:380px){
+  .nav-logo-text .brand { font-size: 0.65rem; }
+  .nav-logo img { height: 38px; }
 }
 </style>
 </head>
@@ -255,36 +347,25 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
 
 <!-- TOP BAR -->
 <div class="top-bar">
-  
-  <!-- Left text -->
-  <span>
-    🇸🇬 Singapore's Trusted Logistics Partner — Island-wide coverage
-  </span>
-
-  <!-- Center slogan -->
-<span class="slogan" style="font-weight:600; font-size:16px;">
-  We deliver promises, on your behalf!
-</span>
-
-  <!-- Right contact -->
+  <span>🇸🇬 Singapore's Trusted Logistics Partner — Island-wide coverage</span>
+  <span class="slogan">We deliver promises, on your behalf!</span>
   <span>
     <a href="tel:+6591858511">📞 +65 9185 8511</a>
     &nbsp;·&nbsp;
     <a href="https://wa.me/6591858511" target="_blank">💬 WhatsApp</a>
   </span>
-
 </div>
 
-<!-- NAV (Wipro style) -->
+<!-- NAV -->
 <nav>
   <a href="#home" class="nav-logo">
     <img src="logored_1.jpeg" alt="Charan Logistics"/>
     <div class="nav-logo-text">
-<span class="brand" style="font-weight:900; font-size:50px;">
-  CHARAN LOGISTICS PTE. LTD.
-</span>      <!--span class="sub">Pte Ltd · Singapore</span-->
+      <span class="brand">CHARAN LOGISTICS PTE. LTD.</span>
     </div>
   </a>
+
+  <!-- Desktop links -->
   <ul class="nav-links">
     <li><a href="#fleet">Fleet</a></li>
     <li><a href="#services">Services</a></li>
@@ -292,7 +373,21 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
     <li><a href="#contact">Contact Us</a></li>
     <li><a href="https://wa.me/6591858511" class="nav-cta" target="_blank">📱 WhatsApp Us</a></li>
   </ul>
+
+  <!-- Hamburger (mobile only) -->
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile Drawer -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#fleet"    onclick="closeMenu()">🚐 Fleet</a>
+  <a href="#services" onclick="closeMenu()">📦 Services</a>
+  <a href="#why"      onclick="closeMenu()">⭐ Why Us</a>
+  <a href="#contact"  onclick="closeMenu()">📍 Contact Us</a>
+  <a href="https://wa.me/6591858511" class="mob-cta" target="_blank">📱 WhatsApp Us</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -313,18 +408,9 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
     </div>
     <div class="hero-visual">
       <div class="hero-card-stack">
-        <div class="hcard hcard-1">
-          <div class="hcard-icon">🚐</div>
-          <div class="hcard-text"><strong>2.4M Cargo Van</strong><span>Last-mile &amp; e-commerce deliveries</span></div>
-        </div>
-        <div class="hcard hcard-2">
-          <div class="hcard-icon">🚛</div>
-          <div class="hcard-text"><strong>14-Feet Box Lorry</strong><span>Bulk cargo &amp; office relocations</span></div>
-        </div>
-        <div class="hcard hcard-3">
-          <div class="hcard-icon">📲</div>
-          <div class="hcard-text"><strong>WhatsApp Booking</strong><span>Instant response · +65 9185 8511</span></div>
-        </div>
+        <div class="hcard hcard-1"><div class="hcard-icon">🚐</div><div class="hcard-text"><strong>2.4M Cargo Van</strong><span>Last-mile &amp; e-commerce deliveries</span></div></div>
+        <div class="hcard hcard-2"><div class="hcard-icon">🚛</div><div class="hcard-text"><strong>14-Feet Box Lorry</strong><span>Bulk cargo &amp; office relocations</span></div></div>
+        <div class="hcard hcard-3"><div class="hcard-icon">📲</div><div class="hcard-text"><strong>WhatsApp Booking</strong><span>Instant response · +65 9185 8511</span></div></div>
       </div>
     </div>
   </div>
@@ -374,18 +460,12 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
       <div class="fleet-card">
         <div class="fleet-badge">Available Now</div>
         <div class="fleet-card-img">🚐</div>
-        <div class="fleet-card-body">
-          <h3>2.4M Cargo Van</h3>
-          <p>Perfect for small to medium deliveries, last-mile logistics, and e-commerce parcels. Nimble enough to navigate tight urban spaces across Singapore.</p>
-        </div>
+        <div class="fleet-card-body"><h3>2.4M Cargo Van</h3><p>Perfect for small to medium deliveries, last-mile logistics, and e-commerce parcels. Nimble enough to navigate tight urban spaces across Singapore.</p></div>
       </div>
       <div class="fleet-card">
         <div class="fleet-badge">Available Now</div>
         <div class="fleet-card-img">🚛</div>
-        <div class="fleet-card-body">
-          <h3>14-Feet Box Lorry</h3>
-          <p>Ideal for bulk cargo, office relocations, and large furniture moves. Spacious enclosed box protects your goods from weather and damage.</p>
-        </div>
+        <div class="fleet-card-body"><h3>14-Feet Box Lorry</h3><p>Ideal for bulk cargo, office relocations, and large furniture moves. Spacious enclosed box protects your goods from weather and damage.</p></div>
       </div>
     </div>
   </div>
@@ -473,15 +553,10 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
         </div>
         <div class="form-group" style="position:relative;">
           <label>📍 Pickup Location</label>
-<div style="display:flex; gap:8px; align-items:center;">
-  <input id="f-pickup" type="text" placeholder="e.g. Jurong East MRT" autocomplete="off" style="flex:1;" />
-
-  <button type="button" onclick="useCurrentLocation()" 
-    style="font-size:12px;color:#1565C0;background:#EEF4FF;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;">
-    📍 Use
-  </button>
-</div>
-         
+          <div style="display:flex; gap:8px; align-items:center;">
+            <input id="f-pickup" type="text" placeholder="e.g. Jurong East MRT" autocomplete="off" style="flex:1;" />
+            <button type="button" onclick="useCurrentLocation()" style="font-size:12px;color:#1565C0;background:#EEF4FF;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;">📍 Use</button>
+          </div>
           <div id="suggest-pickup" class="suggest-box"></div>
         </div>
         <div class="form-group" style="position:relative;">
@@ -532,170 +607,169 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-// SLIDESHOW — add filenames to this array when ready:
+// ── HAMBURGER MENU ──
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMenu() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+
+// ── SLIDESHOW ──
 const truckImages = ["Truck1.png","Truck2.jpeg","Truck3.png","Truck4.png"];
-//const truckImages = [];
-let currentSlide=0;
-const slideshowEl=document.getElementById('fleet-slideshow');
-const placeholder=document.getElementById('slide-placeholder');
-const dotsEl=document.getElementById('slide-dots');
-const counterEl=document.getElementById('slide-counter');
+let currentSlide = 0;
+const slideshowEl  = document.getElementById('fleet-slideshow');
+const placeholder  = document.getElementById('slide-placeholder');
+const dotsEl       = document.getElementById('slide-dots');
+const counterEl    = document.getElementById('slide-counter');
 
 function initSlideshow() {
-  if (!truckImages.length) { placeholder.style.display='flex'; return; }
-  placeholder.style.display='none'; counterEl.style.display='block';
-  const img=document.createElement('img');
-  img.id='fleet-img'; img.style.cssText='width:100%;height:380px;object-fit:contain;display:block;object-position: center;transition:opacity 0.5s;';
-  img.src=truckImages[0]; img.alt='Fleet';
-  slideshowEl.insertBefore(img,dotsEl);
-  truckImages.forEach((_,i)=>{ const d=document.createElement('div'); d.className='dot'+(i===0?' active':''); d.onclick=()=>goToSlide(i); dotsEl.appendChild(d); });
+  if (!truckImages.length) { placeholder.style.display = 'flex'; return; }
+  placeholder.style.display = 'none'; counterEl.style.display = 'block';
+  const img = document.createElement('img');
+  img.id = 'fleet-img';
+  img.style.cssText = 'width:100%;height:380px;object-fit:contain;display:block;object-position:center;transition:opacity 0.5s;';
+  img.src = truckImages[0]; img.alt = 'Fleet';
+  slideshowEl.insertBefore(img, dotsEl);
+  truckImages.forEach((_,i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.onclick = () => goToSlide(i);
+    dotsEl.appendChild(d);
+  });
   updateCounter();
-  setInterval(()=>goToSlide((currentSlide+1)%truckImages.length),3000);
+  setInterval(() => goToSlide((currentSlide+1) % truckImages.length), 3000);
 }
 function goToSlide(idx) {
-  const img=document.getElementById('fleet-img'); if(!img) return;
-  img.style.opacity='0';
-  setTimeout(()=>{ currentSlide=idx; img.src=truckImages[idx]; img.style.opacity='1'; document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx)); updateCounter(); },300);
+  const img = document.getElementById('fleet-img'); if (!img) return;
+  img.style.opacity = '0';
+  setTimeout(() => {
+    currentSlide = idx; img.src = truckImages[idx]; img.style.opacity = '1';
+    document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===idx));
+    updateCounter();
+  }, 300);
 }
-function updateCounter(){ counterEl.textContent=(currentSlide+1)+' / '+truckImages.length; }
+function updateCounter() { counterEl.textContent = (currentSlide+1) + ' / ' + truckImages.length; }
 initSlideshow();
 
-// MAP
-let map=null,pickupCoord=null,dropCoord=null,pickupMarker=null,dropMarker=null,routeLayer=null,suggestTimers={};
-function initMap(){
-  if(map) return;
-  document.getElementById('map-placeholder').style.display='none';
-  document.getElementById('map').style.display='block';
-  map=L.map('map').setView([1.3521,103.8198],12);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:19}).addTo(map);
+// ── MAP ──
+let map=null, pickupCoord=null, dropCoord=null, pickupMarker=null, dropMarker=null, routeLayer=null, suggestTimers={};
+function initMap() {
+  if (map) return;
+  document.getElementById('map-placeholder').style.display = 'none';
+  document.getElementById('map').style.display = 'block';
+  map = L.map('map').setView([1.3521, 103.8198], 12);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {attribution:'© OpenStreetMap © CARTO', maxZoom:19}).addTo(map);
 }
-async function geocode(q){ const r=await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=5&countrycodes=sg`,{headers:{'Accept-Language':'en'}}); return await r.json(); }
-async function suggest(type){
-  const input=document.getElementById(type==='pickup'?'f-pickup':'f-drop');
-  const box=document.getElementById('suggest-'+type);
-  const q=input.value.trim();
-  if(q.length<3){box.style.display='none';return;}
+async function geocode(q) {
+  const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=5&countrycodes=sg`, {headers:{'Accept-Language':'en'}});
+  return await r.json();
+}
+async function suggest(type) {
+  const input = document.getElementById(type==='pickup' ? 'f-pickup' : 'f-drop');
+  const box   = document.getElementById('suggest-'+type);
+  const q = input.value.trim();
+  if (q.length < 3) { box.style.display = 'none'; return; }
   clearTimeout(suggestTimers[type]);
-  suggestTimers[type]=setTimeout(async()=>{
-    const results=await geocode(q+' Singapore');
-    if(!results.length){box.style.display='none';return;}
-    box.innerHTML='';
-    results.forEach(r=>{
-      const div=document.createElement('div'); div.className='suggest-item'; div.textContent=r.display_name;
-      div.onclick=()=>{
-        input.value=r.display_name; box.style.display='none';
-        const coord=[parseFloat(r.lat),parseFloat(r.lon)];
-        if(type==='pickup'){pickupCoord=coord;setMarker('pickup',coord,r.display_name);}
-        else{dropCoord=coord;setMarker('drop',coord,r.display_name);}
-        if(pickupCoord&&dropCoord) drawRoute();
+  suggestTimers[type] = setTimeout(async () => {
+    const results = await geocode(q + ' Singapore');
+    if (!results.length) { box.style.display = 'none'; return; }
+    box.innerHTML = '';
+    results.forEach(r => {
+      const div = document.createElement('div'); div.className = 'suggest-item'; div.textContent = r.display_name;
+      div.onclick = () => {
+        input.value = r.display_name; box.style.display = 'none';
+        const coord = [parseFloat(r.lat), parseFloat(r.lon)];
+        if (type==='pickup') { pickupCoord=coord; setMarker('pickup', coord, r.display_name); }
+        else { dropCoord=coord; setMarker('drop', coord, r.display_name); }
+        if (pickupCoord && dropCoord) drawRoute();
       };
       box.appendChild(div);
     });
-    box.style.display='block';
-  },350);
+    box.style.display = 'block';
+  }, 350);
 }
-function setMarker(type,coord,label){
-  initMap(); const isP=type==='pickup';
-  const icon=L.divIcon({className:'',html:`<div style="background:${isP?'#1565C0':'#22c55e'};color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:11px;padding:4px 10px;border-radius:20px;box-shadow:0 2px 10px rgba(0,0,0,0.15);white-space:nowrap;">${isP?'PICKUP':'DROP'}</div>`,iconAnchor:[28,14]});
-  if(isP){if(pickupMarker)map.removeLayer(pickupMarker);pickupMarker=L.marker(coord,{icon}).addTo(map).bindPopup('<b>Pickup:</b> '+label);}
-  else{if(dropMarker)map.removeLayer(dropMarker);dropMarker=L.marker(coord,{icon}).addTo(map).bindPopup('<b>Drop-off:</b> '+label);}
+function setMarker(type, coord, label) {
+  initMap(); const isP = type==='pickup';
+  const icon = L.divIcon({className:'', html:`<div style="background:${isP?'#1565C0':'#22c55e'};color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:11px;padding:4px 10px;border-radius:20px;box-shadow:0 2px 10px rgba(0,0,0,0.15);white-space:nowrap;">${isP?'PICKUP':'DROP'}</div>`, iconAnchor:[28,14]});
+  if (isP) { if (pickupMarker) map.removeLayer(pickupMarker); pickupMarker = L.marker(coord,{icon}).addTo(map).bindPopup('<b>Pickup:</b> '+label); }
+  else      { if (dropMarker)   map.removeLayer(dropMarker);   dropMarker   = L.marker(coord,{icon}).addTo(map).bindPopup('<b>Drop-off:</b> '+label); }
   map.panTo(coord);
 }
-async function drawRoute(){
-  if(!pickupCoord||!dropCoord) return;
-  const [pLat,pLon]=pickupCoord,[dLat,dLon]=dropCoord;
-  try{
-    const res=await fetch(`https://router.project-osrm.org/route/v1/driving/${pLon},${pLat};${dLon},${dLat}?overview=full&geometries=geojson&steps=true`);
-    const data=await res.json(); const route=data.routes[0];
-    if(routeLayer) map.removeLayer(routeLayer);
-    routeLayer=L.geoJSON(route.geometry,{style:{color:'#1565C0',weight:5,opacity:0.9,lineCap:'round',lineJoin:'round'}}).addTo(map);
-    map.fitBounds(routeLayer.getBounds(),{padding:[40,40]});
-    const distKm=(route.distance/1000).toFixed(1);
-    const mins=Math.round(route.duration/60),hrs=Math.floor(mins/60),rem=mins%60;
-    document.getElementById('route-dist').textContent=distKm+' km';
-    document.getElementById('route-time').textContent=hrs>0?`${hrs}h ${rem}m`:`${mins} min`;
-    document.getElementById('route-label').textContent=document.getElementById('f-pickup').value.split(',')[0]+' → '+document.getElementById('f-drop').value.split(',')[0];
-    document.getElementById('route-summary').style.display='block';
-    const steps=route.legs[0].steps,list=document.getElementById('steps-list');
-    list.innerHTML='';
-    steps.slice(0,8).forEach(s=>{
-      if(!s.maneuver||s.name==='') return;
-      const li=document.createElement('li'); li.textContent=(s.name||'Continue')+(s.distance>50?` — ${(s.distance/1000).toFixed(1)} km`:''); list.appendChild(li);
+async function drawRoute() {
+  if (!pickupCoord || !dropCoord) return;
+  const [pLat,pLon] = pickupCoord, [dLat,dLon] = dropCoord;
+  try {
+    const res  = await fetch(`https://router.project-osrm.org/route/v1/driving/${pLon},${pLat};${dLon},${dLat}?overview=full&geometries=geojson&steps=true`);
+    const data = await res.json(); const route = data.routes[0];
+    if (routeLayer) map.removeLayer(routeLayer);
+    routeLayer = L.geoJSON(route.geometry, {style:{color:'#1565C0',weight:5,opacity:0.9,lineCap:'round',lineJoin:'round'}}).addTo(map);
+    map.fitBounds(routeLayer.getBounds(), {padding:[40,40]});
+    const distKm = (route.distance/1000).toFixed(1);
+    const mins = Math.round(route.duration/60), hrs = Math.floor(mins/60), rem = mins%60;
+    document.getElementById('route-dist').textContent  = distKm + ' km';
+    document.getElementById('route-time').textContent  = hrs>0 ? `${hrs}h ${rem}m` : `${mins} min`;
+    document.getElementById('route-label').textContent = document.getElementById('f-pickup').value.split(',')[0] + ' → ' + document.getElementById('f-drop').value.split(',')[0];
+    document.getElementById('route-summary').style.display = 'block';
+    const steps = route.legs[0].steps, list = document.getElementById('steps-list');
+    list.innerHTML = '';
+    steps.slice(0,8).forEach(s => {
+      if (!s.maneuver || s.name==='') return;
+      const li = document.createElement('li'); li.textContent = (s.name||'Continue') + (s.distance>50 ? ` — ${(s.distance/1000).toFixed(1)} km` : ''); list.appendChild(li);
     });
-    document.getElementById('map-steps').style.display='block';
-  }catch(e){console.error(e);}
+    document.getElementById('map-steps').style.display = 'block';
+  } catch(e) { console.error(e); }
 }
-
 async function useCurrentLocation() {
-  if (!navigator.geolocation) {
-    alert("Geolocation not supported");
-    return;
-  }
-
-  navigator.geolocation.getCurrentPosition(
-    async (pos) => {
-      const lat = pos.coords.latitude;
-      const lon = pos.coords.longitude;
-
-      const coord = [lat, lon];
-      pickupCoord = coord;
-
-      initMap();
-      setMarker('pickup', coord, 'Current Location');
-
-      // Reverse geocoding (convert lat/lon → address)
-      try {
-        const res = await fetch(
-          `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
-        );
-        const data = await res.json();
-
-        const address = data.display_name || 'Current Location';
-        document.getElementById('f-pickup').value = address;
-
-        // If drop already selected → draw route
-        if (pickupCoord && dropCoord) drawRoute();
-
-      } catch (e) {
-        console.error(e);
-      }
-    },
-    (err) => {
-      alert("Location access denied ❌");
-    }
-  );
+  if (!navigator.geolocation) { alert("Geolocation not supported"); return; }
+  navigator.geolocation.getCurrentPosition(async (pos) => {
+    const lat = pos.coords.latitude, lon = pos.coords.longitude;
+    pickupCoord = [lat, lon];
+    initMap(); setMarker('pickup', [lat,lon], 'Current Location');
+    try {
+      const res  = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
+      const data = await res.json();
+      document.getElementById('f-pickup').value = data.display_name || 'Current Location';
+      if (pickupCoord && dropCoord) drawRoute();
+    } catch(e) { console.error(e); }
+  }, () => { alert("Location access denied ❌"); });
 }
-function sendToWhatsApp(){
-  const name=document.getElementById('f-name').value.trim();
-  const phone=document.getElementById('f-phone').value.trim();
-  const service=document.getElementById('f-service').value;
-  const pickup=document.getElementById('f-pickup').value.trim();
-  const drop=document.getElementById('f-drop').value.trim();
-  const notes=document.getElementById('f-notes').value.trim();
-  const dist=document.getElementById('route-dist').textContent;
-  const time=document.getElementById('route-time').textContent;
-  if(!name||!phone||!service||!pickup||!drop){alert('Please fill in all required fields.');return;}
-  let text=`Hello! Charan Logistics, I'd like to book a delivery with Charan Logistics.\n\n👤 Name: ${name}\n📞 Contact: ${phone}\n🚚 Service: ${service}\n📍 Pickup: ${pickup}\n🏁 Drop-off: ${drop}\n`;
-  if(dist) text+=`📏 Distance: ${dist}  ⏱ Est. Time: ${time}\n`;
-  if(notes) text+=`📝 Notes: ${notes}\n`;
-  window.open(`https://wa.me/6591858511?text=${encodeURIComponent(text)}`,'_blank');
+function sendToWhatsApp() {
+  const name    = document.getElementById('f-name').value.trim();
+  const phone   = document.getElementById('f-phone').value.trim();
+  const service = document.getElementById('f-service').value;
+  const pickup  = document.getElementById('f-pickup').value.trim();
+  const drop    = document.getElementById('f-drop').value.trim();
+  const notes   = document.getElementById('f-notes').value.trim();
+  const dist    = document.getElementById('route-dist').textContent;
+  const time    = document.getElementById('route-time').textContent;
+  if (!name||!phone||!service||!pickup||!drop) { alert('Please fill in all required fields.'); return; }
+  let text = `Hello! Charan Logistics, I'd like to book a delivery.\n\n👤 Name: ${name}\n📞 Contact: ${phone}\n🚚 Service: ${service}\n📍 Pickup: ${pickup}\n🏁 Drop-off: ${drop}\n`;
+  if (dist)  text += `📏 Distance: ${dist}  ⏱ Est. Time: ${time}\n`;
+  if (notes) text += `📝 Notes: ${notes}\n`;
+  window.open(`https://wa.me/6591858511?text=${encodeURIComponent(text)}`, '_blank');
 }
-document.addEventListener('click',e=>{
-  ['suggest-pickup','suggest-drop'].forEach(id=>{
-    const box=document.getElementById(id);
-    if(box&&!box.contains(e.target)&&e.target.id!=='f-pickup'&&e.target.id!=='f-drop') box.style.display='none';
+document.addEventListener('click', e => {
+  ['suggest-pickup','suggest-drop'].forEach(id => {
+    const box = document.getElementById(id);
+    if (box && !box.contains(e.target) && e.target.id!=='f-pickup' && e.target.id!=='f-drop') box.style.display = 'none';
   });
 });
-document.getElementById('f-pickup').addEventListener('input',()=>suggest('pickup'));
-document.getElementById('f-drop').addEventListener('input',()=>suggest('drop'));
+document.getElementById('f-pickup').addEventListener('input', () => suggest('pickup'));
+document.getElementById('f-drop').addEventListener('input',   () => suggest('drop'));
 
-const reveals=document.querySelectorAll('.reveal');
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{
-    if(e.isIntersecting){e.target.style.transitionDelay=(i%4)*0.1+'s';e.target.classList.add('visible');obs.unobserve(e.target);}
+// ── SCROLL REVEAL ──
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => {
+    if (e.isIntersecting) { e.target.style.transitionDelay = (i%4)*0.1+'s'; e.target.classList.add('visible'); obs.unobserve(e.target); }
   });
-},{threshold:0.1});
-reveals.forEach(r=>obs.observe(r));
+}, {threshold:0.1});
+reveals.forEach(r => obs.observe(r));
 </script>
 </body>
 </html>
