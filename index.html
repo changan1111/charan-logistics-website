@@ -265,6 +265,26 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
   .nav-logo-text .brand { font-size:1.4rem; }
   .nav-logo img { height:38px; }
 }
+
+/* PRIVACY POLICY SECTION */
+.privacy-section { background:#fff; border-top:1px solid var(--border); }
+.privacy-intro { font-size:0.95rem; color:var(--muted); line-height:1.75; max-width:700px; margin-top:0.6rem; }
+.privacy-effective { display:inline-block; margin-top:1rem; font-size:0.78rem; font-weight:600; color:var(--muted); background:var(--blue-bg); border:1px solid var(--border); padding:0.3rem 0.85rem; border-radius:20px; }
+.privacy-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-top:2.5rem; }
+.privacy-card { background:var(--blue-bg); border:1px solid var(--border); border-radius:12px; padding:1.6rem 1.5rem; }
+.privacy-card-num { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:7px; background:var(--blue-pale); color:var(--blue); font-size:0.75rem; font-weight:800; margin-bottom:0.75rem; border:1px solid rgba(21,101,192,0.2); }
+.privacy-card h4 { font-size:0.97rem; font-weight:800; color:var(--text); margin-bottom:0.5rem; }
+.privacy-card p { font-size:0.84rem; color:var(--muted); line-height:1.72; }
+.privacy-card ul { padding-left:1.1rem; font-size:0.84rem; color:var(--muted); line-height:1.9; }
+.privacy-third-list { list-style:none; padding:0; margin-top:0.5rem; display:flex; flex-direction:column; gap:0.5rem; }
+.privacy-third-list li { font-size:0.82rem; color:var(--muted); line-height:1.6; padding:0.5rem 0.75rem; background:#fff; border-radius:7px; border:1px solid var(--border); }
+.privacy-third-list li strong { color:var(--text); display:block; font-size:0.84rem; }
+
+
+
+
+
+@media(max-width:640px){ .privacy-grid { grid-template-columns:1fr; }  }
 </style>
 </head>
 <body>
@@ -298,6 +318,7 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
     <li><a href="#services">Services</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="#contact">Contact Us</a></li>
+    <li><a href="#privacy">Privacy Policy</a></li>
     <li><a href="https://wa.me/6591858511" class="nav-cta" target="_blank">📱 WhatsApp Us</a></li>
   </ul>
 
@@ -312,6 +333,7 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
   <a href="#services" onclick="closeMenu()">📦 Services</a>
   <a href="#why"      onclick="closeMenu()">⭐ Why Us</a>
   <a href="#contact"  onclick="closeMenu()">📍 Contact Us</a>
+  <a href="#privacy"  onclick="closeMenu()">🔒 Privacy Policy</a>
   <a href="https://wa.me/6591858511" class="mob-cta" target="_blank">📱 WhatsApp Us</a>
 </div>
 
@@ -518,11 +540,95 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
   </div>
 </section>
 
+<!-- PRIVACY POLICY -->
+<section class="privacy-section" id="privacy">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">🔒 Legal</div>
+      <div class="section-title">Privacy <em>Policy</em></div>
+      <p class="privacy-intro">We respect your privacy. This policy explains what personal data we collect, how we use it, and your rights under the Singapore Personal Data Protection Act (PDPA).</p>
+      <span class="privacy-effective">📅 Effective Date: 1 January 2026</span>
+    </div>
+
+    <div class="privacy-grid reveal">
+
+      <div class="privacy-card">
+        <div class="privacy-card-num">1</div>
+        <h4>Who We Are</h4>
+        <p><strong>Charan Logistics Pte Ltd</strong> is a logistics and transport company based in Singapore.<br/><br/>
+        📍 101 Kitchener Road, Singapore<br/>
+        📞 <a href="tel:+6591858511" style="color:var(--blue);">+65 9185 8511</a></p>
+      </div>
+
+      <div class="privacy-card">
+        <div class="privacy-card-num">2</div>
+        <h4>What Data We Collect</h4>
+        <p>When you submit a booking enquiry, we collect only what you voluntarily provide:</p>
+        <ul>
+          <li>👤 Your name</li>
+          <li>📞 Contact number</li>
+          <li>📍 Pickup &amp; drop-off locations</li>
+          <li>🚚 Service type &amp; additional notes</li>
+        </ul>
+        <p style="margin-top:0.5rem;">We do <strong>not</strong> collect payment info, NRIC, or any sensitive personal data.</p>
+      </div>
+
+      <div class="privacy-card">
+        <div class="privacy-card-num">3</div>
+        <h4>How We Use Your Data</h4>
+        <p>Your data is used solely to:</p>
+        <ul>
+          <li>✅ Respond to your delivery enquiry</li>
+          <li>✅ Provide a quote for your route</li>
+          <li>✅ Arrange and confirm your booking</li>
+        </ul>
+        <p style="margin-top:0.5rem;">We do <strong>not</strong> sell your data or use it for marketing purposes.</p>
+      </div>
+
+      <div class="privacy-card">
+        <div class="privacy-card-num">4</div>
+        <h4>How Your Data Is Transmitted</h4>
+        <p>Our website does <strong>not store</strong> your personal data on any server. When you submit the booking form, your details are sent directly to us via <strong>WhatsApp</strong> (Meta Platforms, Inc.).</p>
+        <p style="margin-top:0.5rem;">By submitting the form, you acknowledge your data passes through WhatsApp's platform. View their policy at <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" style="color:var(--blue);">whatsapp.com/legal/privacy-policy</a>.</p>
+      </div>
+
+      <div class="privacy-card" style="grid-column:1/-1;">
+        <div class="privacy-card-num">5</div>
+        <h4>Third-Party Services</h4>
+        <p style="margin-bottom:0.75rem;">Our website uses the following third-party services. These may process limited technical data such as your IP address or location:</p>
+        <ul class="privacy-third-list">
+          <li><strong>🔤 Google Fonts (Google LLC)</strong>Loads the website font. Your browser connects to Google's servers when the page loads. See <a href="https://policies.google.com/privacy" target="_blank" style="color:var(--blue);">Google's Privacy Policy</a>.</li>
+          <li><strong>🗺️ OpenStreetMap &amp; CARTO</strong>Powers the interactive map on the booking form. Map tile requests are processed by CARTO's servers. No personal booking data is shared.</li>
+          <li><strong>📍 Nominatim (OpenStreetMap)</strong>Looks up addresses when you type a pickup or drop-off location. Your entered address text is sent to OpenStreetMap's geocoding service.</li>
+          <li><strong>🚗 OSRM Routing</strong>Calculates route and travel time between your locations. Your coordinates are sent to this routing service.</li>
+        </ul>
+      </div>
+
+      <div class="privacy-card">
+        <div class="privacy-card-num">6</div>
+        <h4>Data Storage</h4>
+        <p>We <strong>do not store</strong> any personal data on our website or any server.</p>
+        <p style="margin-top:0.5rem;">Your booking details only reach us if <strong>you choose to press Send</strong> in WhatsApp. Until then, nothing is saved anywhere.</p>
+      </div>
+
+      <div class="privacy-card">
+        <div class="privacy-card-num">7</div>
+        <h4>Contact Us</h4>
+        <p>If you have any questions about this Privacy Policy or how your data is handled, feel free to reach out to us directly via WhatsApp or phone.</p>
+        <p style="margin-top:0.5rem;">📞 <a href="tel:+6591858511" style="color:var(--blue);">+65 9185 8511</a><br/>
+        💬 <a href="https://wa.me/6591858511" target="_blank" style="color:var(--blue);">WhatsApp Us</a></p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">CHARAN <span>LOGISTICS</span> PTE LTD</div>
   <p>"We deliver promises, on your behalf" — 101 Kitchener Road, Singapore</p>
-  <p>© 2026 Charan Logistics Pte Ltd. All rights reserved.</p>
+  <p>© 2026 Charan Logistics Pte Ltd. All rights reserved. &nbsp;|&nbsp; <a href="#privacy" style="color:rgba(255,255,255,0.5);text-decoration:none;">Privacy Policy</a></p>
 </footer>
 
 <a href="https://wa.me/6591858511" class="wa-float" target="_blank" title="Chat on WhatsApp">
