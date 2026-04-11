@@ -19,79 +19,38 @@
   --border:    #dce8f5;
   --card:      #ffffff;
   --accent:    #0D47A1;
+  --star:      #f59e0b;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
 
 /* TOP BAR */
-.top-bar {
-  background: var(--blue);
-  color: rgba(255,255,255,0.88);
-  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.03em;
-  padding: 0.45rem 5vw;
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 0.3rem;
-}
+.top-bar { background: var(--blue); color: rgba(255,255,255,0.88); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.03em; padding: 0.45rem 5vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.3rem; }
 .top-bar a { color: rgba(255,255,255,0.88); text-decoration: none; transition: color 0.15s; }
 .top-bar a:hover { color: #fff; }
-.top-bar .slogan {
-  font-size: 0.82rem; font-weight: 700;
-  background: linear-gradient(90deg, #ffe066 25%, #42A5F5 50%, #ffe066 75%);
-  background-size: 400% auto;
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  animation: shine 3s linear infinite;
-}
+.top-bar .slogan { font-size: 0.82rem; font-weight: 700; background: linear-gradient(90deg, #ffe066 25%, #42A5F5 50%, #ffe066 75%); background-size: 400% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 3s linear infinite; }
 @keyframes shine { to { background-position: 200% center; } }
 
 /* NAV */
-nav {
-  position: sticky; top: 0; z-index: 200;
-  background: #fff; border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 5vw; height: 70px;
-  box-shadow: 0 2px 16px rgba(21,101,192,0.07);
-}
-.nav-logo {
-  display: flex; align-items: center; gap: 0.85rem;
-  text-decoration: none; flex-shrink: 0;
-}
+nav { position: sticky; top: 0; z-index: 200; background: #fff; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; height: 70px; box-shadow: 0 2px 16px rgba(21,101,192,0.07); }
+.nav-logo { display: flex; align-items: center; gap: 0.85rem; text-decoration: none; flex-shrink: 0; }
 .nav-logo img { height: 55px; width: auto; object-fit: contain; }
 .nav-logo-text { display: flex; flex-direction: column; line-height: 1.15; }
-
-/* ── OPTION 2: No background · CHARAN dark · LOGISTICS orange · PTE.LTD. muted ── */
-.nav-logo-text .brand {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(1.5rem, 2vw, 1.18rem);
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  display: flex;
-  align-items: baseline;
-  gap: 0.28em;
-  background: none;
-  -webkit-text-fill-color: unset;
-}
-.brand-charan   { color: var(--text); }
-.brand-logistics{ color: #FF6F00; }
-.brand-suffix   { font-size: 0.62em; font-weight: 600; color: #8a8a9a; letter-spacing: 0.06em; }
-
-/* Desktop nav links */
+.nav-logo-text .brand { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.5rem, 2vw, 1.18rem); font-weight: 800; letter-spacing: -0.01em; text-transform: uppercase; white-space: nowrap; display: flex; align-items: baseline; gap: 0.28em; background: none; -webkit-text-fill-color: unset; }
+.brand-charan { color: var(--text); }
+.brand-logistics { color: #FF6F00; }
+.brand-suffix { font-size: 0.62em; font-weight: 600; color: #8a8a9a; letter-spacing: 0.06em; }
 .nav-links { display: flex; align-items: center; gap: 0.2rem; list-style: none; }
 .nav-links a { font-size: 0.87rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.5rem 0.95rem; border-radius: 5px; transition: color 0.2s, background 0.2s; white-space: nowrap; }
 .nav-links a:hover { color: var(--blue); background: var(--blue-pale); }
 .nav-cta { background: var(--blue) !important; color: #fff !important; box-shadow: 0 2px 10px rgba(21,101,192,0.28); }
 .nav-cta:hover { background: var(--accent) !important; }
-
-/* Hamburger */
 .hamburger { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 40px; height: 40px; background: var(--blue-pale); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; flex-shrink: 0; }
 .hamburger span { display: block; width: 20px; height: 2px; background: var(--blue); border-radius: 2px; transition: all 0.3s ease; }
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-/* Mobile drawer */
 .mobile-menu { display: none; flex-direction: column; background: #fff; border-bottom: 2px solid var(--border); padding: 1rem 5vw 1.5rem; box-shadow: 0 8px 24px rgba(21,101,192,0.1); }
 .mobile-menu.open { display: flex; }
 .mobile-menu a { font-size: 1rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.85rem 1rem; border-radius: 8px; transition: background 0.2s, color 0.2s; border-bottom: 1px solid var(--border); }
@@ -218,6 +177,97 @@ section { padding:5rem 5vw; }
 #map-steps { display:none; background:#fff; border:1px solid var(--border); border-radius:10px; padding:1.2rem; max-height:180px; overflow-y:auto; margin-top:1rem; }
 #steps-list { padding-left:1.2rem; font-size:0.82rem; color:var(--muted); line-height:1.9; }
 
+/* ══════════════════════════════════
+   REVIEWS SECTION
+══════════════════════════════════ */
+.review-section { background: var(--white); }
+
+.rv-stats-bar { display:flex; align-items:center; gap:1.2rem; margin-bottom:1.6rem; flex-wrap:wrap; margin-top:2rem; }
+.rv-avg-num { font-size:3rem; font-weight:800; color:var(--blue); line-height:1; }
+.rv-avg-info { display:flex; flex-direction:column; gap:3px; }
+.rv-avg-stars { font-size:1.2rem; color:var(--star); letter-spacing:2px; }
+.rv-avg-count { font-size:0.82rem; color:var(--muted); }
+
+/* Marquee columns */
+.reviews-marquee-wrap { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-top:2rem; }
+.reviews-col { height:500px; overflow:hidden; position:relative; -webkit-mask-image:linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%); mask-image:linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%); }
+.reviews-marquee-wrap:hover .reviews-track { animation-play-state:paused; }
+.reviews-track { display:flex; flex-direction:column; gap:0.9rem; }
+@keyframes scrollUp { 0% { transform:translateY(0); } 100% { transform:translateY(-50%); } }
+
+.rv-loading, .rv-empty { text-align:center; color:var(--muted); font-size:0.9rem; padding:2.5rem 0; grid-column:1/-1; }
+.rv-spinner { display:inline-block; width:28px; height:28px; border:3px solid var(--border); border-top-color:var(--blue); border-radius:50%; animation:spin 0.7s linear infinite; vertical-align:middle; margin-right:8px; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* Review card */
+.review-card { background:var(--blue-bg); border:1px solid var(--border); border-left:3px solid var(--blue); border-radius:12px; padding:1.1rem 1.3rem; display:flex; flex-direction:column; gap:0.5rem; flex-shrink:0; }
+.rc-top { display:flex; align-items:center; justify-content:space-between; gap:0.5rem; }
+.rc-meta { display:flex; align-items:center; gap:0.65rem; }
+.rc-avatar { width:36px; height:36px; border-radius:50%; background:var(--blue); color:#fff; display:flex; align-items:center; justify-content:center; font-size:0.9rem; font-weight:800; flex-shrink:0; }
+.rc-author { font-size:0.88rem; font-weight:700; color:var(--text); line-height:1.2; }
+.rc-company { font-size:0.74rem; color:var(--muted); }
+.rc-stars { font-size:0.82rem; color:var(--star); flex-shrink:0; letter-spacing:1px; }
+.rc-service { font-size:0.69rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue); background:rgba(21,101,192,0.09); display:inline-block; padding:2px 8px; border-radius:20px; width:fit-content; }
+.rc-text { font-size:0.85rem; color:var(--muted); line-height:1.65; font-style:italic; }
+.rc-text::before { content:'\201C'; }
+.rc-text::after  { content:'\201D'; }
+.rc-date { font-size:0.68rem; color:#99a; margin-top:0.1rem; }
+
+#consentLabel:has(#rv-consent:checked) {
+  border-color: var(--blue);
+  background: var(--blue-pale);
+}
+
+/* Submit form */
+.review-form-box { background:var(--blue-bg); border:1px solid var(--border); border-radius:16px; padding:2.2rem 2rem; margin-top:3rem; box-shadow:0 4px 28px rgba(21,101,192,0.07); }
+.form-heading { display:flex; align-items:flex-start; gap:1rem; margin-bottom:1.4rem; flex-wrap:wrap; }
+.form-heading-icon { width:48px; height:48px; border-radius:12px; background:var(--blue); color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; }
+.form-heading-text h3 { font-size:1.15rem; font-weight:800; color:var(--text); line-height:1.2; }
+.form-heading-text p { font-size:0.85rem; color:var(--muted); margin-top:3px; line-height:1.5; }
+.rv-disclaimer { background:rgba(21,101,192,0.06); border:1px solid rgba(21,101,192,0.2); border-radius:10px; padding:0.85rem 1.1rem; font-size:0.8rem; color:var(--muted); line-height:1.65; margin-bottom:1.4rem; display:flex; gap:0.7rem; align-items:flex-start; }
+.rv-disclaimer-icon { font-size:1rem; flex-shrink:0; margin-top:1px; }
+.rv-disclaimer strong { color:var(--blue); }
+.rv-disclaimer a { color:var(--blue); font-weight:700; text-decoration:none; }
+.rv-disclaimer a:hover { text-decoration:underline; }
+.rv-form-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem; }
+.rv-form-group { display:flex; flex-direction:column; gap:0.4rem; }
+.rv-form-group.full { grid-column:1/-1; }
+.rv-form-group label { font-size:0.7rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--muted); }
+.rv-form-group input, .rv-form-group textarea, .rv-form-group select { background:var(--white); border:1.5px solid var(--border); border-radius:8px; padding:0.7rem 1rem; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.93rem; color:var(--text); transition:border-color 0.2s,box-shadow 0.2s; outline:none; width:100%; }
+.rv-form-group input:focus, .rv-form-group textarea:focus, .rv-form-group select:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(21,101,192,0.1); }
+.rv-form-group textarea { resize:vertical; min-height:100px; }
+
+/* CSS star widget */
+.star-widget { display:flex; flex-direction:column; gap:6px; }
+.star-widget .group-lbl { font-size:0.7rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--muted); }
+.stars-row { display:flex; flex-direction:row-reverse; justify-content:flex-end; gap:4px; }
+.stars-row input[type="radio"] { display:none; }
+.stars-row label { font-size:1.9rem; color:#cdd8e8; cursor:pointer; transition:color 0.12s; text-transform:none !important; letter-spacing:0 !important; font-weight:400 !important; line-height:1; }
+.stars-row label:hover, .stars-row label:hover ~ label { color:var(--star); }
+.stars-row input[type="radio"]:checked ~ label { color:var(--star); }
+
+.rv-submit-btn { margin-top:1.2rem; background:var(--blue); color:#fff; border:none; border-radius:8px; padding:0.9rem 2.2rem; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.95rem; font-weight:700; letter-spacing:0.04em; cursor:pointer; transition:background 0.2s,transform 0.15s,box-shadow 0.2s; display:inline-flex; align-items:center; gap:0.5rem; box-shadow:0 4px 16px rgba(21,101,192,0.28); }
+.rv-submit-btn:hover { background:var(--accent); transform:translateY(-1px); box-shadow:0 8px 24px rgba(21,101,192,0.36); }
+.rv-submit-btn:disabled { opacity:0.55; cursor:not-allowed; transform:none; box-shadow:none; }
+.rv-msg { margin-top:0.9rem; font-size:0.88rem; padding:10px 14px; border-radius:8px; font-weight:600; display:none; }
+.rv-msg.success { background:#edf7ed; color:#2e7d32; border:1px solid #a5d6a7; display:block; }
+.rv-msg.error   { background:#fdecea; color:#c62828; border:1px solid #ef9a9a; display:block; }
+.hp-field { position:absolute; left:-9999px; top:-9999px; opacity:0; pointer-events:none; }
+
+/* PRIVACY */
+.privacy-section { background:#fff; border-top:1px solid var(--border); }
+.privacy-intro { font-size:0.95rem; color:var(--muted); line-height:1.75; max-width:700px; margin-top:0.6rem; }
+.privacy-effective { display:inline-block; margin-top:1rem; font-size:0.78rem; font-weight:600; color:var(--muted); background:var(--blue-bg); border:1px solid var(--border); padding:0.3rem 0.85rem; border-radius:20px; }
+.privacy-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-top:2.5rem; }
+.privacy-card { background:var(--blue-bg); border:1px solid var(--border); border-radius:12px; padding:1.6rem 1.5rem; }
+.privacy-card-num { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:7px; background:var(--blue-pale); color:var(--blue); font-size:0.75rem; font-weight:800; margin-bottom:0.75rem; border:1px solid rgba(21,101,192,0.2); }
+.privacy-card h4 { font-size:0.97rem; font-weight:800; color:var(--text); margin-bottom:0.5rem; }
+.privacy-card p { font-size:0.84rem; color:var(--muted); line-height:1.72; }
+.privacy-card ul { padding-left:1.1rem; font-size:0.84rem; color:var(--muted); line-height:1.9; }
+.privacy-third-list { list-style:none; padding:0; margin-top:0.5rem; display:flex; flex-direction:column; gap:0.5rem; }
+.privacy-third-list li { font-size:0.82rem; color:var(--muted); line-height:1.6; padding:0.5rem 0.75rem; background:#fff; border-radius:7px; border:1px solid var(--border); }
+.privacy-third-list li strong { color:var(--text); display:block; font-size:0.84rem; }
+
 /* FOOTER */
 footer { background:var(--text); padding:2.5rem 5vw; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
 .footer-logo { font-size:1.1rem; font-weight:800; color:#fff; }
@@ -229,9 +279,9 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
 .wa-float:hover { transform:scale(1.1); }
 
 /* ANIMATIONS */
-@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeUp  { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 @keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-@keyframes pulse { 0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.5)} 50%{box-shadow:0 4px 32px rgba(37,211,102,0.8)} }
+@keyframes pulse   { 0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.5)} 50%{box-shadow:0 4px 32px rgba(37,211,102,0.8)} }
 .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.55s ease,transform 0.55s ease; }
 .reveal.visible { opacity:1; transform:translateY(0); }
 
@@ -241,6 +291,13 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
   .hero-visual { display:none; }
   .services-grid,.why-grid { grid-template-columns:1fr 1fr; }
   .contact-strip { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:720px){
+  .reviews-marquee-wrap { grid-template-columns:1fr; }
+  .reviews-col:nth-child(2) { display:none; }
+  .reviews-col { height:420px; }
+  .rv-form-grid { grid-template-columns:1fr; }
+  .review-form-box { padding:1.5rem 1.2rem; }
 }
 @media(max-width:640px){
   .top-bar { flex-direction:column; text-align:center; font-size:0.74rem; padding:0.5rem 4vw; gap:0.25rem; }
@@ -260,31 +317,13 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
   footer { flex-direction:column; text-align:center; }
   .cta-section h2 { font-size:clamp(1.6rem,7vw,2.4rem); }
   .btn-white { display:block; padding:1rem; }
+  .privacy-grid { grid-template-columns:1fr; }
+  .reviews-col { height:360px; }
 }
 @media(max-width:380px){
   .nav-logo-text .brand { font-size:1.4rem; }
   .nav-logo img { height:38px; }
 }
-
-/* PRIVACY POLICY SECTION */
-.privacy-section { background:#fff; border-top:1px solid var(--border); }
-.privacy-intro { font-size:0.95rem; color:var(--muted); line-height:1.75; max-width:700px; margin-top:0.6rem; }
-.privacy-effective { display:inline-block; margin-top:1rem; font-size:0.78rem; font-weight:600; color:var(--muted); background:var(--blue-bg); border:1px solid var(--border); padding:0.3rem 0.85rem; border-radius:20px; }
-.privacy-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-top:2.5rem; }
-.privacy-card { background:var(--blue-bg); border:1px solid var(--border); border-radius:12px; padding:1.6rem 1.5rem; }
-.privacy-card-num { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:7px; background:var(--blue-pale); color:var(--blue); font-size:0.75rem; font-weight:800; margin-bottom:0.75rem; border:1px solid rgba(21,101,192,0.2); }
-.privacy-card h4 { font-size:0.97rem; font-weight:800; color:var(--text); margin-bottom:0.5rem; }
-.privacy-card p { font-size:0.84rem; color:var(--muted); line-height:1.72; }
-.privacy-card ul { padding-left:1.1rem; font-size:0.84rem; color:var(--muted); line-height:1.9; }
-.privacy-third-list { list-style:none; padding:0; margin-top:0.5rem; display:flex; flex-direction:column; gap:0.5rem; }
-.privacy-third-list li { font-size:0.82rem; color:var(--muted); line-height:1.6; padding:0.5rem 0.75rem; background:#fff; border-radius:7px; border:1px solid var(--border); }
-.privacy-third-list li strong { color:var(--text); display:block; font-size:0.84rem; }
-
-
-
-
-
-@media(max-width:640px){ .privacy-grid { grid-template-columns:1fr; }  }
 </style>
 </head>
 <body>
@@ -308,20 +347,18 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
       <div class="brand">
         <span class="brand-charan">CHARAN</span>
         <span class="brand-logistics">LOGISTICS</span>
-        <!--span class="brand-suffix">PTE. LTD.</span-->
       </div>
     </div>
   </a>
-
   <ul class="nav-links">
     <li><a href="#fleet">Fleet</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="#contact">Contact Us</a></li>
+    <li><a href="#reviews">Reviews</a></li>
     <li><a href="#privacy">Privacy Policy</a></li>
     <li><a href="https://wa.me/6591858511" class="nav-cta" target="_blank">📱 WhatsApp Us</a></li>
   </ul>
-
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -333,6 +370,7 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
   <a href="#services" onclick="closeMenu()">📦 Services</a>
   <a href="#why"      onclick="closeMenu()">⭐ Why Us</a>
   <a href="#contact"  onclick="closeMenu()">📍 Contact Us</a>
+  <a href="#reviews"  onclick="closeMenu()">💬 Reviews</a>
   <a href="#privacy"  onclick="closeMenu()">🔒 Privacy Policy</a>
   <a href="https://wa.me/6591858511" class="mob-cta" target="_blank">📱 WhatsApp Us</a>
 </div>
@@ -477,7 +515,7 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
     <div class="contact-strip reveal">
       <div class="contact-chip"><div class="chip-icon">👤</div><div class="chip-text"><strong>Contact</strong><span>Hello! Charan Logistics</span></div></div>
       <div class="contact-chip"><div class="chip-icon">📞</div><div class="chip-text"><strong>Phone / WhatsApp</strong><span><a href="tel:+6591858511" style="color:var(--blue);text-decoration:none;">+65 9185 8511</a></span></div></div>
-      <div class="contact-chip"><div class="chip-icon">📍</div><div class="chip-text"><strong>Address</strong><span>101 Kitchener Road, Singapore</span></div></div>
+      <div class="contact-chip"><div class="chip-icon">📍</div><div class="chip-text"><strong>Address</strong><span>101 Kitchener Road, #03-14 Jalan Besar Plaza, Singapore</span></div></div>
       <div class="contact-chip"><div class="chip-icon">💬</div><div class="chip-text"><strong>Quick Booking</strong><span><a href="https://wa.me/6591858511" target="_blank" style="color:var(--blue);text-decoration:none;">Chat on WhatsApp →</a></span></div></div>
     </div>
     <div class="contact-grid">
@@ -540,6 +578,120 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
   </div>
 </section>
 
+<!-- ════════════════════════════════════
+     REVIEWS
+════════════════════════════════════ -->
+<section class="review-section" id="reviews">
+  <div class="section-inner">
+
+    <div class="reveal">
+      <div class="section-tag">Client Reviews</div>
+      <div class="section-title">What Our <em>Clients Say</em></div>
+      <p class="section-sub">We're driven by every word you share — real stories from real businesses across Singapore who trust us with their deliveries.</p>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="rv-stats-bar" id="rvStatsBar" style="display:none">
+      <div class="rv-avg-num" id="rvAvgNum">—</div>
+      <div class="rv-avg-info">
+        <div class="rv-avg-stars" id="rvAvgStars"></div>
+        <div class="rv-avg-count" id="rvAvgCount"></div>
+      </div>
+    </div>
+
+    <!-- Dual-column marquee — columns injected by JS -->
+    <div class="reviews-marquee-wrap reveal" id="rvMarqueeWrap">
+      <div class="rv-loading" id="rvLoading" style="grid-column:1/-1;">
+        <span class="rv-spinner"></span> Loading reviews…
+      </div>
+      <div class="rv-empty" id="rvEmpty" style="display:none;grid-column:1/-1;">
+        No reviews yet — be the first to share your experience! 🎉
+      </div>
+    </div>
+
+    <!-- Submit form -->
+    <div class="review-form-box reveal">
+
+      <div class="form-heading">
+        <div class="form-heading-icon">✍️</div>
+        <div class="form-heading-text">
+          <h3>Share Your Honest Experience</h3>
+          <p>Your genuine feedback — good or critical — helps us improve every delivery and helps others make informed decisions.</p>
+        </div>
+      </div>
+
+
+      <div class="rv-form-grid">
+        <div class="rv-form-group">
+          <label for="rv-name">Your Name *</label>
+          <input type="text" id="rv-name" placeholder="e.g. Rahul Kumar" maxlength="80" autocomplete="name"/>
+        </div>
+        <div class="rv-form-group">
+          <label for="rv-company">Company (optional)</label>
+          <input type="text" id="rv-company" placeholder="e.g. ABC Traders Pte Ltd" maxlength="100"/>
+        </div>
+        <div class="rv-form-group">
+          <label for="rv-service">Service Used</label>
+          <select id="rv-service">
+            <option value="">— Select a service —</option>
+            <option>Local &amp; Island-Wide Transport</option>
+            <option>On-Demand Van / Lorry Rental</option>
+            <option>Corporate &amp; Office Relocation</option>
+            <option>E-Commerce &amp; Last Mile Delivery</option>
+            <option>Bulk Cargo &amp; Goods Movement</option>
+            <option>Safe Handling of Fragile Goods</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="star-widget">
+          <label class="group-lbl">Your Rating *</label>
+          <div class="stars-row" id="starsRow">
+            <input type="radio" id="s5" name="rv-rating" value="5"/><label for="s5">★</label>
+            <input type="radio" id="s4" name="rv-rating" value="4"/><label for="s4">★</label>
+            <input type="radio" id="s3" name="rv-rating" value="3"/><label for="s3">★</label>
+            <input type="radio" id="s2" name="rv-rating" value="2"/><label for="s2">★</label>
+            <input type="radio" id="s1" name="rv-rating" value="1"/><label for="s1">★</label>
+          </div>
+        </div>
+        <div class="rv-form-group full">
+          <label for="rv-feedback">Your Review *
+            <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:0.78rem;color:var(--blue);">
+              (min. 20 characters — be specific, it helps most)
+            </span>
+          </label>
+          <textarea id="rv-feedback" placeholder="Tell us honestly — what went well? Was the driver on time? How was the handling? What could we do better? Your real experience matters most to us." maxlength="600"></textarea>
+        </div>
+      </div>
+
+      <div class="rv-disclaimer">
+        <span class="rv-disclaimer-icon">📢</span>
+        <span>
+          <strong>Public Notice:</strong> By submitting, you agree your name and review will be <strong>publicly visible</strong> on this website — anyone can read it.
+        </span>
+      </div>
+
+    <label style="display:flex;align-items:flex-start;gap:0.75rem;cursor:pointer;margin-bottom:1.4rem;padding:1rem 1.2rem;background:#fff;border:1.5px solid var(--border);border-radius:10px;transition:border-color 0.2s;" id="consentLabel">
+  <input type="checkbox" id="rv-consent" style="margin-top:3px;width:18px;height:18px;accent-color:var(--blue);flex-shrink:0;cursor:pointer;"/>
+  <span style="font-size:0.85rem;color:var(--muted);line-height:1.65;">
+    I understand that my <strong style="color:var(--text);">name and review will be publicly visible</strong> on this website and can be read by anyone. I confirm this review reflects my genuine experience with Charan Logistics.
+  </span>
+</label>
+
+      <!-- Honeypot — invisible to humans -->
+      <div class="hp-field" aria-hidden="true">
+        <input type="text" id="rv-hp" tabindex="-1" autocomplete="off"/>
+      </div>
+      <input type="hidden" id="rv-t0"/>
+
+      <button class="rv-submit-btn" id="rvSubmitBtn" onclick="submitReview()">
+        Submit Review <span>→</span>
+      </button>
+      <div class="rv-msg" id="rvMsg"></div>
+
+    </div>
+  </div>
+</section>
+
 <!-- PRIVACY POLICY -->
 <section class="privacy-section" id="privacy">
   <div class="section-inner">
@@ -549,30 +701,26 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
       <p class="privacy-intro">We respect your privacy. This policy explains what personal data we collect, how we use it, and your rights under the Singapore Personal Data Protection Act (PDPA).</p>
       <span class="privacy-effective">📅 Effective Date: 1 January 2026</span>
     </div>
-
     <div class="privacy-grid reveal">
-
       <div class="privacy-card">
         <div class="privacy-card-num">1</div>
         <h4>Who We Are</h4>
         <p><strong>Charan Logistics Pte Ltd</strong> is a logistics and transport company based in Singapore.<br/><br/>
-        📍 101 Kitchener Road, Singapore<br/>
+        📍 101 Kitchener Road,#03-14 Jalan Besar Plaza,Singapore<br/>
         📞 <a href="tel:+6591858511" style="color:var(--blue);">+65 9185 8511</a></p>
       </div>
-
       <div class="privacy-card">
         <div class="privacy-card-num">2</div>
         <h4>What Data We Collect</h4>
-        <p>When you submit a booking enquiry, we collect only what you voluntarily provide:</p>
+        <p>When you submit a booking enquiry or review, we collect only what you voluntarily provide:</p>
         <ul>
           <li>👤 Your name</li>
-          <li>📞 Contact number</li>
+          <li>📞 Contact number (booking form only)</li>
           <li>📍 Pickup &amp; drop-off locations</li>
-          <li>🚚 Service type &amp; additional notes</li>
+          <li>🚚 Service type, notes &amp; review feedback</li>
         </ul>
         <p style="margin-top:0.5rem;">We do <strong>not</strong> collect payment info, NRIC, or any sensitive personal data.</p>
       </div>
-
       <div class="privacy-card">
         <div class="privacy-card-num">3</div>
         <h4>How We Use Your Data</h4>
@@ -581,17 +729,16 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
           <li>✅ Respond to your delivery enquiry</li>
           <li>✅ Provide a quote for your route</li>
           <li>✅ Arrange and confirm your booking</li>
+          <li>✅ Display approved reviews publicly on this site</li>
         </ul>
         <p style="margin-top:0.5rem;">We do <strong>not</strong> sell your data or use it for marketing purposes.</p>
       </div>
-
       <div class="privacy-card">
         <div class="privacy-card-num">4</div>
         <h4>How Your Data Is Transmitted</h4>
-        <p>Our website does <strong>not store</strong> your personal data on any server. When you submit the booking form, your details are sent directly to us via <strong>WhatsApp</strong> (Meta Platforms, Inc.).</p>
-        <p style="margin-top:0.5rem;">By submitting the form, you acknowledge your data passes through WhatsApp's platform. View their policy at <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" style="color:var(--blue);">whatsapp.com/legal/privacy-policy</a>.</p>
+        <p>Booking enquiries are sent directly via <strong>WhatsApp</strong> (Meta Platforms, Inc.) — no server storage involved.</p>
+        <p style="margin-top:0.5rem;">Reviews are stored securely in <strong>Database</strong>. Only your name, review text, and rating are stored. To request deletion, WhatsApp us at <a href="https://wa.me/6591858511" target="_blank" style="color:var(--blue);">+65 9185 8511</a>.</p>
       </div>
-
       <div class="privacy-card" style="grid-column:1/-1;">
         <div class="privacy-card-num">5</div>
         <h4>Third-Party Services</h4>
@@ -601,33 +748,30 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
           <li><strong>🗺️ OpenStreetMap &amp; CARTO</strong>Powers the interactive map on the booking form. Map tile requests are processed by CARTO's servers. No personal booking data is shared.</li>
           <li><strong>📍 Nominatim (OpenStreetMap)</strong>Looks up addresses when you type a pickup or drop-off location. Your entered address text is sent to OpenStreetMap's geocoding service.</li>
           <li><strong>🚗 OSRM Routing</strong>Calculates route and travel time between your locations. Your coordinates are sent to this routing service.</li>
+          <li><strong>🗄️ Supabase</strong>Stores approved customer reviews (name, rating, feedback, service used). Data is held on Database's secure cloud infrastructure. See <a href="https://supabase.com/privacy" target="_blank" style="color:var(--blue);">Supabase's Privacy Policy</a>.</li>
         </ul>
       </div>
-
       <div class="privacy-card">
         <div class="privacy-card-num">6</div>
-        <h4>Data Storage</h4>
-        <p>We <strong>do not store</strong> any personal data on our website or any server.</p>
-        <p style="margin-top:0.5rem;">Your booking details only reach us if <strong>you choose to press Send</strong> in WhatsApp. Until then, nothing is saved anywhere.</p>
+        <h4>Data Storage &amp; Reviews</h4>
+        <p>Booking form data is <strong>not stored</strong> on any server — it only reaches us if you press Send in WhatsApp.</p>
+        <p style="margin-top:0.5rem;">Review submissions are stored in Database and displayed publicly once approved.</p>
       </div>
-
       <div class="privacy-card">
         <div class="privacy-card-num">7</div>
         <h4>Contact Us</h4>
-        <p>If you have any questions about this Privacy Policy or how your data is handled, feel free to reach out to us directly via WhatsApp or phone.</p>
+        <p>If you have any questions about this Privacy Policy or how your data is handled, feel free to reach out directly.</p>
         <p style="margin-top:0.5rem;">📞 <a href="tel:+6591858511" style="color:var(--blue);">+65 9185 8511</a><br/>
         💬 <a href="https://wa.me/6591858511" target="_blank" style="color:var(--blue);">WhatsApp Us</a></p>
       </div>
-
     </div>
-
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">CHARAN <span>LOGISTICS</span> PTE LTD</div>
-  <p>"We deliver promises, on your behalf" — 101 Kitchener Road, Singapore</p>
+  <p>"We deliver promises, on your behalf" — 101 Kitchener Road, #03-14 Jalan Besar Plaza, Singapore</p>
   <p>© 2026 Charan Logistics Pte Ltd. All rights reserved. &nbsp;|&nbsp; <a href="#privacy" style="color:rgba(255,255,255,0.5);text-decoration:none;">Privacy Policy</a></p>
 </footer>
 
@@ -637,130 +781,265 @@ footer p { font-size:0.8rem; color:rgba(255,255,255,0.4); }
   </svg>
 </a>
 
+<!-- SCRIPTS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
-hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
-function closeMenu() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+/* NAV */
+const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobile-menu');
+hamburger.addEventListener('click',()=>{hamburger.classList.toggle('open');mobileMenu.classList.toggle('open');});
+function closeMenu(){hamburger.classList.remove('open');mobileMenu.classList.remove('open');}
 
-const truckImages = ["Truck0.jpeg","Truck1.png","Truck2.jpeg","Truck3.png","Truck4.png"];
-let currentSlide = 0;
-const slideshowEl = document.getElementById('fleet-slideshow');
-const placeholder  = document.getElementById('slide-placeholder');
-const dotsEl       = document.getElementById('slide-dots');
-const counterEl    = document.getElementById('slide-counter');
-function initSlideshow() {
-  if (!truckImages.length) { placeholder.style.display='flex'; return; }
-  placeholder.style.display='none'; counterEl.style.display='block';
-  const img = document.createElement('img');
-  img.id='fleet-img';
+/* SLIDESHOW */
+const truckImages=["Truck0.jpeg","Truck1.png","Truck2.jpeg","Truck3.png","Truck4.png"];
+let currentSlide=0;
+const slideshowEl=document.getElementById('fleet-slideshow'),placeholder=document.getElementById('slide-placeholder'),dotsEl=document.getElementById('slide-dots'),counterEl=document.getElementById('slide-counter');
+function initSlideshow(){
+  if(!truckImages.length){placeholder.style.display='flex';return;}
+  placeholder.style.display='none';counterEl.style.display='block';
+  const img=document.createElement('img');img.id='fleet-img';
   img.style.cssText='width:100%;height:380px;object-fit:contain;display:block;object-position:center;transition:opacity 0.5s;';
-  img.src=truckImages[0]; img.alt='Fleet';
+  img.src=truckImages[0];img.alt='Fleet';
   slideshowEl.insertBefore(img,dotsEl);
-  truckImages.forEach((_,i)=>{ const d=document.createElement('div'); d.className='dot'+(i===0?' active':''); d.onclick=()=>goToSlide(i); dotsEl.appendChild(d); });
-  updateCounter();
-  setInterval(()=>goToSlide((currentSlide+1)%truckImages.length),3000);
+  truckImages.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' active':'');d.onclick=()=>goToSlide(i);dotsEl.appendChild(d);});
+  updateCounter();setInterval(()=>goToSlide((currentSlide+1)%truckImages.length),3000);
 }
-function goToSlide(idx) {
-  const img=document.getElementById('fleet-img'); if(!img)return;
-  img.style.opacity='0';
-  setTimeout(()=>{ currentSlide=idx; img.src=truckImages[idx]; img.style.opacity='1'; document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx)); updateCounter(); },300);
-}
-function updateCounter(){ counterEl.textContent=(currentSlide+1)+' / '+truckImages.length; }
+function goToSlide(idx){const img=document.getElementById('fleet-img');if(!img)return;img.style.opacity='0';setTimeout(()=>{currentSlide=idx;img.src=truckImages[idx];img.style.opacity='1';document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx));updateCounter();},300);}
+function updateCounter(){counterEl.textContent=(currentSlide+1)+' / '+truckImages.length;}
 initSlideshow();
 
+/* MAP */
 let map=null,pickupCoord=null,dropCoord=null,pickupMarker=null,dropMarker=null,routeLayer=null,suggestTimers={};
-function initMap(){
-  if(map)return;
-  document.getElementById('map-placeholder').style.display='none';
-  document.getElementById('map').style.display='block';
-  map=L.map('map').setView([1.3521,103.8198],12);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:19}).addTo(map);
-}
-async function geocode(q){ const r=await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=5&countrycodes=sg`,{headers:{'Accept-Language':'en'}}); return await r.json(); }
+function initMap(){if(map)return;document.getElementById('map-placeholder').style.display='none';document.getElementById('map').style.display='block';map=L.map('map').setView([1.3521,103.8198],12);L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:19}).addTo(map);}
+async function geocode(q){const r=await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=5&countrycodes=sg`,{headers:{'Accept-Language':'en'}});return await r.json();}
 async function suggest(type){
-  const input=document.getElementById(type==='pickup'?'f-pickup':'f-drop');
-  const box=document.getElementById('suggest-'+type);
-  const q=input.value.trim();
+  const input=document.getElementById(type==='pickup'?'f-pickup':'f-drop'),box=document.getElementById('suggest-'+type),q=input.value.trim();
   if(q.length<3){box.style.display='none';return;}
   clearTimeout(suggestTimers[type]);
   suggestTimers[type]=setTimeout(async()=>{
-    const results=await geocode(q+' Singapore');
-    if(!results.length){box.style.display='none';return;}
-    box.innerHTML='';
-    results.forEach(r=>{
-      const div=document.createElement('div'); div.className='suggest-item'; div.textContent=r.display_name;
-      div.onclick=()=>{
-        input.value=r.display_name; box.style.display='none';
-        const coord=[parseFloat(r.lat),parseFloat(r.lon)];
-        if(type==='pickup'){pickupCoord=coord;setMarker('pickup',coord,r.display_name);}
-        else{dropCoord=coord;setMarker('drop',coord,r.display_name);}
-        if(pickupCoord&&dropCoord)drawRoute();
-      };
-      box.appendChild(div);
-    });
-    box.style.display='block';
-  },350);
+    const results=await geocode(q+' Singapore');if(!results.length){box.style.display='none';return;}
+    box.innerHTML='';results.forEach(r=>{const div=document.createElement('div');div.className='suggest-item';div.textContent=r.display_name;div.onclick=()=>{input.value=r.display_name;box.style.display='none';const coord=[parseFloat(r.lat),parseFloat(r.lon)];if(type==='pickup'){pickupCoord=coord;setMarker('pickup',coord,r.display_name);}else{dropCoord=coord;setMarker('drop',coord,r.display_name);}if(pickupCoord&&dropCoord)drawRoute();};box.appendChild(div);});box.style.display='block';},350);
 }
-function setMarker(type,coord,label){
-  initMap(); const isP=type==='pickup';
-  const icon=L.divIcon({className:'',html:`<div style="background:${isP?'#1565C0':'#22c55e'};color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:11px;padding:4px 10px;border-radius:20px;box-shadow:0 2px 10px rgba(0,0,0,0.15);white-space:nowrap;">${isP?'PICKUP':'DROP'}</div>`,iconAnchor:[28,14]});
-  if(isP){if(pickupMarker)map.removeLayer(pickupMarker);pickupMarker=L.marker(coord,{icon}).addTo(map).bindPopup('<b>Pickup:</b> '+label);}
-  else{if(dropMarker)map.removeLayer(dropMarker);dropMarker=L.marker(coord,{icon}).addTo(map).bindPopup('<b>Drop-off:</b> '+label);}
-  map.panTo(coord);
-}
+function setMarker(type,coord,label){initMap();const isP=type==='pickup';const icon=L.divIcon({className:'',html:`<div style="background:${isP?'#1565C0':'#22c55e'};color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:11px;padding:4px 10px;border-radius:20px;box-shadow:0 2px 10px rgba(0,0,0,0.15);white-space:nowrap;">${isP?'PICKUP':'DROP'}</div>`,iconAnchor:[28,14]});if(isP){if(pickupMarker)map.removeLayer(pickupMarker);pickupMarker=L.marker(coord,{icon}).addTo(map).bindPopup('<b>Pickup:</b> '+label);}else{if(dropMarker)map.removeLayer(dropMarker);dropMarker=L.marker(coord,{icon}).addTo(map).bindPopup('<b>Drop-off:</b> '+label);}map.panTo(coord);}
 async function drawRoute(){
-  if(!pickupCoord||!dropCoord)return;
-  const[pLat,pLon]=pickupCoord,[dLat,dLon]=dropCoord;
-  try{
-    const res=await fetch(`https://router.project-osrm.org/route/v1/driving/${pLon},${pLat};${dLon},${dLat}?overview=full&geometries=geojson&steps=true`);
-    const data=await res.json(); const route=data.routes[0];
-    if(routeLayer)map.removeLayer(routeLayer);
-    routeLayer=L.geoJSON(route.geometry,{style:{color:'#1565C0',weight:5,opacity:0.9,lineCap:'round',lineJoin:'round'}}).addTo(map);
-    map.fitBounds(routeLayer.getBounds(),{padding:[40,40]});
-    const distKm=(route.distance/1000).toFixed(1);
-    const mins=Math.round(route.duration/60),hrs=Math.floor(mins/60),rem=mins%60;
-    document.getElementById('route-dist').textContent=distKm+' km';
-    document.getElementById('route-time').textContent=hrs>0?`${hrs}h ${rem}m`:`${mins} min`;
-    document.getElementById('route-label').textContent=document.getElementById('f-pickup').value.split(',')[0]+' → '+document.getElementById('f-drop').value.split(',')[0];
-    document.getElementById('route-summary').style.display='block';
-    const steps=route.legs[0].steps,list=document.getElementById('steps-list');
-    list.innerHTML='';
-    steps.slice(0,8).forEach(s=>{ if(!s.maneuver||s.name==='')return; const li=document.createElement('li'); li.textContent=(s.name||'Continue')+(s.distance>50?` — ${(s.distance/1000).toFixed(1)} km`:''); list.appendChild(li); });
-    document.getElementById('map-steps').style.display='block';
-  }catch(e){console.error(e);}
+  if(!pickupCoord||!dropCoord)return;const[pLat,pLon]=pickupCoord,[dLat,dLon]=dropCoord;
+  try{const res=await fetch(`https://router.project-osrm.org/route/v1/driving/${pLon},${pLat};${dLon},${dLat}?overview=full&geometries=geojson&steps=true`);const data=await res.json();const route=data.routes[0];if(routeLayer)map.removeLayer(routeLayer);routeLayer=L.geoJSON(route.geometry,{style:{color:'#1565C0',weight:5,opacity:0.9,lineCap:'round',lineJoin:'round'}}).addTo(map);map.fitBounds(routeLayer.getBounds(),{padding:[40,40]});const distKm=(route.distance/1000).toFixed(1);const mins=Math.round(route.duration/60),hrs=Math.floor(mins/60),rem=mins%60;document.getElementById('route-dist').textContent=distKm+' km';document.getElementById('route-time').textContent=hrs>0?`${hrs}h ${rem}m`:`${mins} min`;document.getElementById('route-label').textContent=document.getElementById('f-pickup').value.split(',')[0]+' → '+document.getElementById('f-drop').value.split(',')[0];document.getElementById('route-summary').style.display='block';const steps=route.legs[0].steps,list=document.getElementById('steps-list');list.innerHTML='';steps.slice(0,8).forEach(s=>{if(!s.maneuver||s.name==='')return;const li=document.createElement('li');li.textContent=(s.name||'Continue')+(s.distance>50?` — ${(s.distance/1000).toFixed(1)} km`:'');list.appendChild(li);});document.getElementById('map-steps').style.display='block';}catch(e){console.error(e);}
 }
-async function useCurrentLocation(){
-  if(!navigator.geolocation){alert("Geolocation not supported");return;}
-  navigator.geolocation.getCurrentPosition(async(pos)=>{
-    const lat=pos.coords.latitude,lon=pos.coords.longitude;
-    pickupCoord=[lat,lon]; initMap(); setMarker('pickup',[lat,lon],'Current Location');
-    try{ const res=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`); const data=await res.json(); document.getElementById('f-pickup').value=data.display_name||'Current Location'; if(pickupCoord&&dropCoord)drawRoute(); }catch(e){console.error(e);}
-  },()=>{alert("Location access denied ❌");});
-}
-function sendToWhatsApp(){
-  const name=document.getElementById('f-name').value.trim();
-  const phone=document.getElementById('f-phone').value.trim();
-  const service=document.getElementById('f-service').value;
-  const pickup=document.getElementById('f-pickup').value.trim();
-  const drop=document.getElementById('f-drop').value.trim();
-  const notes=document.getElementById('f-notes').value.trim();
-  const dist=document.getElementById('route-dist').textContent;
-  const time=document.getElementById('route-time').textContent;
-  if(!name||!phone||!service||!pickup||!drop){alert('Please fill in all required fields.');return;}
-  let text=`Hello! Charan Logistics, I'd like to book a delivery.\n\n👤 Name: ${name}\n📞 Contact: ${phone}\n🚚 Service: ${service}\n📍 Pickup: ${pickup}\n🏁 Drop-off: ${drop}\n`;
-  if(dist)text+=`📏 Distance: ${dist}  ⏱ Est. Time: ${time}\n`;
-  if(notes)text+=`📝 Notes: ${notes}\n`;
-  window.open(`https://wa.me/6591858511?text=${encodeURIComponent(text)}`,'_blank');
-}
-document.addEventListener('click',e=>{ ['suggest-pickup','suggest-drop'].forEach(id=>{ const box=document.getElementById(id); if(box&&!box.contains(e.target)&&e.target.id!=='f-pickup'&&e.target.id!=='f-drop')box.style.display='none'; }); });
+async function useCurrentLocation(){if(!navigator.geolocation){alert("Geolocation not supported");return;}navigator.geolocation.getCurrentPosition(async(pos)=>{const lat=pos.coords.latitude,lon=pos.coords.longitude;pickupCoord=[lat,lon];initMap();setMarker('pickup',[lat,lon],'Current Location');try{const res=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);const data=await res.json();document.getElementById('f-pickup').value=data.display_name||'Current Location';if(pickupCoord&&dropCoord)drawRoute();}catch(e){console.error(e);}},()=>{alert("Location access denied ❌");});}
+function sendToWhatsApp(){const name=document.getElementById('f-name').value.trim(),phone=document.getElementById('f-phone').value.trim(),service=document.getElementById('f-service').value,pickup=document.getElementById('f-pickup').value.trim(),drop=document.getElementById('f-drop').value.trim(),notes=document.getElementById('f-notes').value.trim(),dist=document.getElementById('route-dist').textContent,time=document.getElementById('route-time').textContent;if(!name||!phone||!service||!pickup||!drop){alert('Please fill in all required fields.');return;}let text=`Hello! Charan Logistics, I'd like to book a delivery.\n\n👤 Name: ${name}\n📞 Contact: ${phone}\n🚚 Service: ${service}\n📍 Pickup: ${pickup}\n🏁 Drop-off: ${drop}\n`;if(dist)text+=`📏 Distance: ${dist}  ⏱ Est. Time: ${time}\n`;if(notes)text+=`📝 Notes: ${notes}\n`;window.open(`https://wa.me/6591858511?text=${encodeURIComponent(text)}`,'_blank');}
+document.addEventListener('click',e=>{['suggest-pickup','suggest-drop'].forEach(id=>{const box=document.getElementById(id);if(box&&!box.contains(e.target)&&e.target.id!=='f-pickup'&&e.target.id!=='f-drop')box.style.display='none';});});
 document.getElementById('f-pickup').addEventListener('input',()=>suggest('pickup'));
 document.getElementById('f-drop').addEventListener('input',()=>suggest('drop'));
 
+/* SCROLL REVEAL */
 const reveals=document.querySelectorAll('.reveal');
-const obs=new IntersectionObserver(entries=>{ entries.forEach((e,i)=>{ if(e.isIntersecting){e.target.style.transitionDelay=(i%4)*0.1+'s';e.target.classList.add('visible');obs.unobserve(e.target);} }); },{threshold:0.1});
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){e.target.style.transitionDelay=(i%4)*0.1+'s';e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
 reveals.forEach(r=>obs.observe(r));
+</script>
+
+<!-- ════════════════════════════════════
+     SUPABASE REVIEWS
+     Replace SUPABASE_URL + SUPABASE_ANON
+     Run SQL at bottom of file
+════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+const SUPABASE_URL      = "%%SUPABASE_URL%%";
+const SUPABASE_ANON_KEY = "%%SUPABASE_ANON_KEY%%";
+
+const _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+/* Content quality filter — prevents fake 4/5-star reviews from auto-approving */
+const SPAM_PATTERNS = [
+  /(.)\1{5,}/,
+  /^(good|great|ok|nice|best|excellent|awesome|perfect|wonderful|amazing|superb|fantastic)\s*[.!]*$/i,
+  /\b(click here|buy now|visit|http|www\.)\b/i,
+];
+function contentQualityOk(text) {
+  const t = text.trim();
+  if (t.length < 20) return false;
+  for (const re of SPAM_PATTERNS) if (re.test(t)) return false;
+  if (t.split(/\s+/).filter(w => w.length > 1).length < 5) return false;
+  return true;
+}
+
+/* Anti-bot timestamp */
+(function(){
+  const stamp = () => { const el=document.getElementById('rv-t0'); if(el&&!el.value) el.value=Date.now(); };
+  ['rv-name','rv-feedback','rv-service','rv-company'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('focus',stamp,{once:true});});
+  document.querySelectorAll('input[name="rv-rating"]').forEach(r=>r.addEventListener('change',stamp,{once:true}));
+})();
+
+/* Load reviews */
+async function loadReviews() {
+  try {
+    const {data,error} = await _sb.from('reviews').select('*').eq('approved',true).order('created_at',{ascending:false}).limit(80);
+    document.getElementById('rvLoading').style.display = 'none';
+    if (error) throw error;
+    if (!data||data.length===0) { document.getElementById('rvEmpty').style.display='block'; return; }
+    buildStats(data);
+    buildMarquee(data);
+  } catch(err) {
+    document.getElementById('rvLoading').textContent = '⚠️ Could not load reviews.';
+    console.error(err);
+  }
+}
+
+function buildStats(reviews) {
+  const avg = (reviews.reduce((s,r)=>s+r.rating,0)/reviews.length).toFixed(1);
+  const rounded = Math.round(avg);
+  document.getElementById('rvAvgNum').textContent   = avg;
+  document.getElementById('rvAvgStars').textContent = '★'.repeat(rounded)+'☆'.repeat(5-rounded);
+  document.getElementById('rvAvgCount').textContent = `Based on ${reviews.length} review${reviews.length>1?'s':''}`;
+  document.getElementById('rvStatsBar').style.display = 'flex';
+}
+
+function buildMarquee(reviews) {
+  const wrap = document.getElementById('rvMarqueeWrap');
+  wrap.querySelectorAll('.reviews-col').forEach(c => c.remove());
+
+  // Need at least 2 reviews to show 2 columns
+  const showTwoCols = reviews.length >= 2;
+
+  if (!showTwoCols) {
+    // Single review — just show one column, no scroll animation
+    const col = document.createElement('div');
+    col.className = 'reviews-col';
+    col.style.cssText = 'height:auto;mask-image:none;-webkit-mask-image:none;';
+    const track = document.createElement('div');
+    track.className = 'reviews-track';
+    // No animation, no duplication
+    track.appendChild(buildCard(reviews[0]));
+    col.appendChild(track);
+    wrap.appendChild(col);
+    return;
+  }
+
+  const half = Math.ceil(reviews.length / 2);
+  const col1 = reviews.slice(0, half);
+  const col2 = reviews.slice(half);
+
+  // Only animate if enough cards to fill the column height
+  [[col1, Math.max(20, col1.length * 4)], [col2, Math.max(26, col2.length * 5)]].forEach(([items, dur]) => {
+    const col = document.createElement('div');
+    col.className = 'reviews-col';
+    const track = document.createElement('div');
+    track.className = 'reviews-track';
+
+    if (items.length >= 3) {
+      // Enough cards — animate with duplicate set
+      track.style.animation = `scrollUp ${dur}s linear infinite`;
+      [...items, ...items].forEach(r => track.appendChild(buildCard(r)));
+    } else {
+      // Too few — show static, no duplication
+      track.style.animation = 'none';
+      items.forEach(r => track.appendChild(buildCard(r)));
+    }
+
+    col.appendChild(track);
+    wrap.appendChild(col);
+  });
+}
+
+function buildCard(r) {
+  const rating = Math.min(5,Math.max(1,Number(r.rating)||5));
+  const stars  = '★'.repeat(rating)+'☆'.repeat(5-rating);
+  const name   = r.name||r.client_name||'Anonymous';
+  const div    = document.createElement('div');
+  div.className = 'review-card';
+  div.innerHTML = `
+    <div class="rc-top">
+      <div class="rc-meta">
+        <div class="rc-avatar">${esc(name[0].toUpperCase())}</div>
+        <div>
+          <div class="rc-author">${esc(name)}</div>
+          ${r.company?`<div class="rc-company">${esc(r.company)}</div>`:''}
+        </div>
+      </div>
+      <div class="rc-stars">${stars}</div>
+    </div>
+    ${r.service?`<div class="rc-service">${esc(r.service)}</div>`:''}
+    <div class="rc-text">${esc(r.review||r.feedback||'')}</div>
+    ${r.created_at?`<div class="rc-date">${new Date(r.created_at).toLocaleDateString('en-SG',{day:'numeric',month:'short',year:'numeric'})}</div>`:''}
+  `;
+  return div;
+}
+
+/* Submit review */
+async function submitReview() {
+  const name     = document.getElementById('rv-name').value.trim();
+  const company  = document.getElementById('rv-company').value.trim();
+  const service  = document.getElementById('rv-service').value;
+  const feedback = document.getElementById('rv-feedback').value.trim();
+  const ratingEl = document.querySelector('input[name="rv-rating"]:checked');
+  const hp       = document.getElementById('rv-hp').value;
+  const t0raw    = document.getElementById('rv-t0').value;
+  const elapsed  = t0raw ? (Date.now()-parseInt(t0raw,10)) : 99999;
+
+  const consent = document.getElementById('rv-consent');
+if (!consent.checked) {
+  showRvMsg('error', '⚠️ Please tick the checkbox to confirm you understand your review will be publicly visible.');
+  consent.closest('label').style.borderColor = '#ef4444';
+  consent.closest('label').style.background = '#fef2f2';
+  setTimeout(() => {
+    consent.closest('label').style.borderColor = '';
+    consent.closest('label').style.background = '';
+  }, 3000);
+  return;
+}
+  const btn      = document.getElementById('rvSubmitBtn');
+
+  // Bot traps
+  if (hp) { showRvMsg('success','✅ Thank you! Your review has been submitted.'); return; }
+  if (elapsed < 4000) { showRvMsg('error','⚠️ Please take a moment to fill in the form properly before submitting.'); return; }
+
+  // Validation
+  if (!name)            { showRvMsg('error','⚠️ Please enter your name.'); return; }
+  if (!ratingEl)        { showRvMsg('error','⚠️ Please select a star rating.'); return; }
+  if (!feedback)        { showRvMsg('error','⚠️ Please write your review.'); return; }
+  if (feedback.length<20) { showRvMsg('error','⚠️ Please write at least 20 characters — a little more detail helps everyone.'); return; }
+
+  const rating   = parseInt(ratingEl.value,10);
+  const approved = rating>=4 && contentQualityOk(feedback);
+
+  btn.disabled=true; btn.innerHTML='<span>Submitting…</span>';
+
+  try {
+    const {error} = await _sb.from('reviews').insert([{
+      name, company:company||null, service:service||null,
+      review:feedback, rating, approved, created_at:new Date().toISOString()
+    }]);
+    if (error) throw error;
+
+    if (approved) {
+      showRvMsg('success','✅ Thank you! Your review is now live — we truly appreciate your feedback.');
+      await loadReviews();
+    } else {
+      showRvMsg('success', rating>=4
+        ? '✅ Thank you! Your review is undergoing a quick quality check and will be live very soon.'
+        : '✅ Thank you for your honest feedback! Our team will review it within 24 hours.');
+    }
+    document.getElementById('rv-name').value='';
+    document.getElementById('rv-company').value='';
+    document.getElementById('rv-service').value='';
+    document.getElementById('rv-feedback').value='';
+    document.getElementById('rv-t0').value='';
+    document.getElementById('rv-consent').checked = false;
+    document.getElementById('consentLabel').style.borderColor = '';
+    document.getElementById('consentLabel').style.background = '';
+    const checked=document.querySelector('input[name="rv-rating"]:checked');
+    if(checked) checked.checked=false;
+  } catch(err) {
+    showRvMsg('error','❌ Submission failed. Please check your connection and try again.');
+    console.error(err);
+  } finally {
+    btn.disabled=false; btn.innerHTML='Submit Review <span>→</span>';
+  }
+}
+
+function showRvMsg(type,text){const el=document.getElementById('rvMsg');el.textContent=text;el.className='rv-msg '+type;}
+function esc(str){return String(str||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+loadReviews();
 </script>
 </body>
 </html>
