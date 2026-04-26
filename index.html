@@ -985,21 +985,41 @@ function buildStats(reviews) {
   document.getElementById('rvStatsBar').style.display = 'flex';
 }
 
-function buildMarquee(reviews) {
+
+  function buildMarquee(reviews) {
   const wrap = document.getElementById('rvMarqueeWrap');
   wrap.querySelectorAll('.reviews-col').forEach(c => c.remove());
 
-  // Need at least 2 reviews to show 2 columns
-  const showTwoCols = reviews.length >= 2;
+  const isMobile = window.innerWidth <= 720;
 
+  if (isMobile) {
+    // Single column — all reviews visible
+    const col = document.createElement('div');
+    col.className = 'reviews-col';
+    const track = document.createElement('div');
+    track.className = 'reviews-track';
+
+    if (reviews.length >= 3) {
+      track.style.animation = `scrollUp ${reviews.length * 5}s linear infinite`;
+      [...reviews, ...reviews].forEach(r => track.appendChild(buildCard(r)));
+    } else {
+      track.style.animation = 'none';
+      reviews.forEach(r => track.appendChild(buildCard(r)));
+    }
+
+    col.appendChild(track);
+    wrap.appendChild(col);
+    return;
+  }
+
+  // Desktop: two columns
+  const showTwoCols = reviews.length >= 2;
   if (!showTwoCols) {
-    // Single review — just show one column, no scroll animation
     const col = document.createElement('div');
     col.className = 'reviews-col';
     col.style.cssText = 'height:auto;mask-image:none;-webkit-mask-image:none;';
     const track = document.createElement('div');
     track.className = 'reviews-track';
-    // No animation, no duplication
     track.appendChild(buildCard(reviews[0]));
     col.appendChild(track);
     wrap.appendChild(col);
@@ -1010,7 +1030,6 @@ function buildMarquee(reviews) {
   const col1 = reviews.slice(0, half);
   const col2 = reviews.slice(half);
 
-  // Only animate if enough cards to fill the column height
   [[col1, Math.max(20, col1.length * 4)], [col2, Math.max(26, col2.length * 5)]].forEach(([items, dur]) => {
     const col = document.createElement('div');
     col.className = 'reviews-col';
@@ -1018,11 +1037,9 @@ function buildMarquee(reviews) {
     track.className = 'reviews-track';
 
     if (items.length >= 3) {
-      // Enough cards — animate with duplicate set
       track.style.animation = `scrollUp ${dur}s linear infinite`;
       [...items, ...items].forEach(r => track.appendChild(buildCard(r)));
     } else {
-      // Too few — show static, no duplication
       track.style.animation = 'none';
       items.forEach(r => track.appendChild(buildCard(r)));
     }
